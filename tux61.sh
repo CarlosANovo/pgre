@@ -14,7 +14,7 @@ wget https://github.com/${AUTHOR}/pgre/archive/master.zip
 echo 'Unpacking files'
 unzip master.zip
 
-echo 'Installing Apache Web Server'
+echo ' === Installing Apache Web Server === '
 apt install -y apache2
 mkdir -p /var/www/tux61.pgre.fe.up.pt/html
 chown -R $USER:$USER /var/www/tux61.pgre.fe.up.pt/html
@@ -29,5 +29,22 @@ a2ensite tux61.pgre.fe.up.pt
 systemctl restart apache2
 
 
-echo '...'
+echo ' === Installing the NTP server === '
+apt install -y ntp
+cp /etc/ntp.conf{,.backup}
+# CONFIGURE AND PLACE THIS FILE ACCORDINGLY IN GITHUB
+# cp pgre-master/tux61/ntp.conf /etc/ntp.conf
+service ntp restart
+
+echo ' === Installing FTP server === '
+
+echo ' === Installing DNS server === '
+apt install -y bind9 bind9utils
+# INSERT APROPRIATE FILES
+
+echo ' === Installing e-mail server === '
+
+# also make the webserver for the e-mail
+
+
 # remove the temporary files
