@@ -16,16 +16,16 @@ unzip master.zip
 
 echo ' === Installing Apache Web Server === '
 apt install -y apache2
-mkdir -p /var/www/tux61.pgre.fe.up.pt/html
-chown -R $USER:$USER /var/www/tux61.pgre.fe.up.pt/html
-chmod -r 755 /var/www/tux61.pgre.fe.up.pt
+mkdir -p /var/www/pgre.fe.up.pt/html
+chown -R $USER:$USER /var/www/pgre.fe.up.pt/html
+chmod -r 755 /var/www/pgre.fe.up.pt
 
 echo 'Inserting content into the Web page...'
-cp -r pgre-master/tux61/html/* /var/www/tux61.pgre.fe.up.pt/html
-cp pgre-master/tux61/tux61.pgre.fe.up.pt.conf /etc/apache2/sites-available/tux61.pgre.fe.up.pt.conf
+cp -r pgre-master/tux61/html/* /var/www/pgre.fe.up.pt/html
+cp pgre-master/tux61/pgre.fe.up.pt.conf /etc/apache2/sites-available/pgre.fe.up.pt.conf
 
 echo 'Enabling the Vitual Host...'
-a2ensite tux61.pgre.fe.up.pt
+a2ensite pgre.fe.up.pt
 systemctl restart apache2
 systemctl enable apache2
 
@@ -74,8 +74,36 @@ systemctl restart bind
 systemctl enable bind
 
 echo ' === Installing e-mail server === '
+apt install -y curl net-tools wget lsof postfix mailutils
+cp /etc/postfix/main.cf{,.backup}
+cp pgre-master/tux61/main.cf /etc/postfix/main.cf
+echo 'Restarting and enabling mail server...'
+systemctl restart postfix
+systemctl enable postfix
+echo 'Installing IMAP agent...'
+apt install -y dovecot-core dovecot-imapd
+cp /etc/dovecot/dovecot.conf{,.backup}
+cp pgre-master/tux61/dovecot.conf /etc/dovecot/dovecot.conf
+cp /etc/dovecot/conf.d/10-auth.conf{,.backup}
+cp pgre-master/tux61/10-auth.conf /etc/dovecot/conf.d/10-auth.conf
+cp /etc/dovecot/conf.d/10-mail.conf{,.backup}
+cp pgre-master/tux61/10-mail.conf /etc/dovecot/conf.d/10-mail.conf
+cp /etc/dovecot/conf.d/10-master.conf{,.backup}
+cp pgre-master/tux61/10-master.conf /etc/dovecot/conf.d/10-master.conf
+echo 'Restarting IMAP agent...'
+systemctl restart dovecot.service
+systemctl enable dovecot.service
+echo 'Installing Webmail service...'
+apt install -y php7.0 libapache2-mod-php7.0 php7.0-curl php7.0-xml
+mkdir -p /var/www/mail.pgre.fe.up.pt/html
+chown -R $USER:$USER /var/www/mail.pgre.fe.up.pt/html
+chmod -r 755 /var/www/mail.pgre.fe.up.pt
+cd /var/www/mail.pgre.fe.up.pt/html
+curl -sL https://repository.rainloop.net/installer.php | php
 
-# also make the webserver for the e-mail
-
+cp pgre-master/tux61/mail.pgre.fe.up.pt.conf /etc/apache2/sites-available/mail.pgre.fe.up.pt.conf
+a2ensite mail.pgre.fe.up.pt
+systemctl restart apache2
+echo 'Webmail service installed, please configure.'
 
 # remove the temporary files
