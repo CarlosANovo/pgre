@@ -1,0 +1,30 @@
+;
+; BIND data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	ns1.pgre.fe.up.pt. admin.ns1.pgre.fe.up.pt. (
+			      4		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+; name servers - NS records
+	IN	NS	ns1.pgre.fe.up.pt.
+	IN	NS	ns2.pgre.fe.up.pt.
+
+; name servers - A records
+ns1.pgre.fe.up.pt.	IN	A	172.16.1.61
+ns2.pgre.fe.up.pt.	IN	A	172.16.1.62
+
+; Rede interna - A records
+tux61.pgre.fe.up.pt.	IN	A	172.16.1.61
+tux62.pgre.fe.up.pt.	IN	A	172.16.1.62
+tux63.pgre.fe.up.pt.	IN	A	172.16.1.63
+tux64.pgre.fe.up.pt.	IN	A	172.16.1.64
+mail.pgre.fe.up.pt.	IN	A	172.16.1.61
+ftp.pgre.fe.up.pt.	IN	A	172.16.1.61
+ntp.pgre.fe.up.pt.	IN	A	172.16.1.61
+pgre.fe.up.pt.		IN	A	172.16.1.61
+
+

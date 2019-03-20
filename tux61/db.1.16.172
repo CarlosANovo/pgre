@@ -1,0 +1,26 @@
+;
+; BIND reverse data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	ns1.pgre.fe.up.pt. admin.pgre1.fe.up.pt. (
+			      4		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+
+; name servers - NS records
+	IN	NS	ns1.pgre.fe.up.pt.
+	IN	NS	ns2.pgre.fe.up.pt.
+
+; PTR Records
+61	IN	PTR	ns1.pgre.fe.up.pt.
+61	IN	PTR	ftp.pgre.fe.up.pt.
+61	IN	PTR	ntp.pgre.fe.up.pt.
+61	IN	PTR	pgre.fe.up.pt.
+61	IN	PTR	tux61.pgre.fe.up.pt
+62	IN	PTR	ns2.pgre.fe.up.pt.
+62	IN	PTR	tux62.pgre.fe.up.pt.
+63	IN	PTR	tux63.pgre.fe.up.pt.
+64	IN	PTR	tux64.pgre.fe.up.pt.
