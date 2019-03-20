@@ -32,11 +32,12 @@ systemctl restart apache2
 echo ' === Installing the NTP server === '
 apt install -y ntp
 cp /etc/ntp.conf{,.backup}
-# CONFIGURE AND PLACE THIS FILE ACCORDINGLY IN GITHUB
-# cp pgre-master/tux61/ntp.conf /etc/ntp.conf
-service ntp restart
+cp pgre-master/tux61/ntp.conf /etc/ntp.conf
+systemctl restart ntp
+systemctl enable ntp
 
 echo ' === Installing FTP server === '
+
 
 echo ' === Installing DNS server === '
 apt install -y bind9 bind9utils
