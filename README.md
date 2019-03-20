@@ -22,6 +22,12 @@ For simplicity, most of the services will be provided by the same server, so tha
 The configuration is done by running `./tux6X.sh` on the corresponding machine. Alternatively, after rebooting, all of the commands can be run at once through **ssh**.
 
 ### Users
-To make sure all of the services are running, a few test users should be created, thus testing the FTP server and the e-mail server. All of these users must be configured in the server computer.
+To make sure all of the services are running, a few test users should be created, allowing tests to the FTP server and the e-mail server. All of these users are configured in the server computer.
 
+| Username | Password    | Notes                                         |
+|:--------:|:-----------:|:----------------------------------------------|
+| webadmin | internet123 | User capable of editing /var/www/ through FTP |
+| john     | john.1980   | john@pgre.fe.up.pt                            |
+| alice    | alice.1990  | alice@pgre.fe.up.pt                           |
+| bob      | bob.1234    | bob@pgre.fe.up.pt                             |
 
