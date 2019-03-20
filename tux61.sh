@@ -37,7 +37,11 @@ systemctl restart ntp
 systemctl enable ntp
 
 echo ' === Installing FTP server === '
-
+apt install -y vsftpd
+cp /etc/vsftpd.conf{,.backup}
+cp pgre-master/tux61/vsftpd.conf /etc/vsftpd.conf
+systemctl restart vsftpd
+systemctl enable vsftpd
 
 echo ' === Installing DNS server === '
 apt install -y bind9 bind9utils
