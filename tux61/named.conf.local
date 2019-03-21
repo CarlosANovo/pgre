@@ -1,0 +1,20 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "pgre.fe.up.pt" {
+	type master;
+	file "/etc/bind/zones/db.pgre.fe.up.pt";
+	allow-transfer { 172.16.1.62; };
+};
+
+zone "1.16.172.in-addr.arpa" {
+	type master;
+	file "/etc/bind/zones/db.1.16.172";
+	allow-transfer { 172.16.1.62; };
+};
+
