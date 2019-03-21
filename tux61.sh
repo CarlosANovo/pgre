@@ -6,8 +6,9 @@ if ! [ $(id -u) = 0 ]; then
    exit 1
 fi
 
+echo 'Updating and installing necessary packages...'
 apt update
-apt install -y curl
+apt install -y curl wget
 
 echo 'Downloading files'
 wget https://github.com/${AUTHOR}/pgre/archive/master.zip
@@ -43,17 +44,6 @@ cp pgre-master/tux61/vsftpd.conf /etc/vsftpd.conf
 systemctl restart vsftpd
 systemctl enable vsftpd
 
-# ADD USERS AND MAKE THEIR FOLDERS
-# useradd -m -c "Name" -s /bin/bash username
-# passwd username
-# echo "username" | tee -a /etc/vsftpd.userlist
-# mkdir /home/username/ftp
-# chown nobody:nogroup /home/username/ftp
-# chmod a-w /home/username/ftp
-# mkdir /home/username/ftp/files
-# chown -R username:username /home/username/ftp/files
-# chmod -R 0770 /home/username/ftp/files/
-
 echo ' === Installing DNS server === '
 apt install -y bind9 bind9utils
 cp pgre-master/tux61/bind9 /etc/default/bind9
@@ -74,7 +64,7 @@ systemctl restart bind
 systemctl enable bind
 
 echo ' === Installing e-mail server === '
-apt install -y curl net-tools wget lsof postfix mailutils
+apt install -y net-tools wget lsof postfix mailutils
 cp /etc/postfix/main.cf{,.backup}
 cp pgre-master/tux61/main.cf /etc/postfix/main.cf
 echo 'Restarting and enabling mail server...'
@@ -105,5 +95,62 @@ cp pgre-master/tux61/mail.pgre.fe.up.pt.conf /etc/apache2/sites-available/mail.p
 a2ensite mail.pgre.fe.up.pt
 systemctl restart apache2
 echo 'Webmail service installed, please configure.'
+
+# ADD USERS AND MAKE THEIR FOLDERS
+echo ' === Adding users === '
+echo 'export MAIL=$HOME/.maildir' >> /etc/profile
+addgroup webadminsgroup
+chgrp -R webadminsgroup /var/www
+chmod -R g+w /var/www
+echo 'webadmin...'
+useradd -m -c "Web Administrator" -s /bin/bash -G webadminsgroup webadmin
+echo -e "internet123\ninternet123" | passwd webadmin
+echo "webadmin" | tee -a /etc/vsftpd.userlist
+mkdir /home/webadmin/ftp
+chown nobody:nogroup /home/webadmin/ftp
+chmod a-w /home/webadmin/ftp
+mkdir /home/webadmin/ftp/files
+chown -R webadmin:webadmin /home/webadmin/ftp/files
+chmod -R 0770 /home/webadmin/ftp/files/
+mkdir /home/webadmin/ftp/www
+chown -R webadmin:webadmin /home/webadmin/ftp/www
+chmod -R 0770 /home/webadmin/ftp/www/
+mount /var/www /home/webadmin/ftp/www -o bind
+
+echo 'john...'
+useradd -m -c "John" -s /bin/bash john
+echo -e "john.1980\njohn.1980" | passwd john
+echo "john" | tee -a /etc/vsftpd.userlist
+mkdir /home/john/ftp
+chown nobody:nogroup /home/john/ftp
+chmod a-w /home/john/ftp
+mkdir /home/john/ftp/files
+chown -R john:john /home/john/ftp/files
+chmod -R 0770 /home/john/ftp/files/
+
+echo 'alice...'
+useradd -m -c "Alice" -s /bin/bash alice
+echo -e "alice.1990\nalice.1990" | passwd alice
+echo "alice" | tee -a /etc/vsftpd.userlist
+mkdir /home/alice/ftp
+chown nobody:nogroup /home/alice/ftp
+chmod a-w /home/alice/ftp
+mkdir /home/alice/ftp/files
+chown -R alice:alice /home/alice/ftp/files
+chmod -R 0770 /home/alice/ftp/files/
+
+echo 'bob...'
+useradd -m -c "Robert" -s /bin/bash bob
+echo -e "bob.1234\nbob.1234" | passwd bob
+echo "bob" | tee -a /etc/vsftpd.userlist
+mkdir /home/bob/ftp
+chown nobody:nogroup /home/bob/ftp
+chmod a-w /home/bob/ftp
+mkdir /home/bob/ftp/files
+chown -R bob:bob /home/bob/ftp/files
+chmod -R 0770 /home/bob/ftp/files/
+
+echo "admin: root" >> /etc/aliases
+newaliases
 
 # remove the temporary files
