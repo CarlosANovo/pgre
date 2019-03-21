@@ -1,0 +1,19 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "pgre.fe.up.pt" {
+	type slave;
+	file "db.pgre.fe.up.pt";
+	masters { 172.16.1.61; };	# ns1 - tux61
+};
+
+zone "1.16.172.in-addr.arpa" {
+	type slave;
+	file "db.1.17.172";
+	masters { 172.16.1.61; };	# ns1 - tux61
+};
