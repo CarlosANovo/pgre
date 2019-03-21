@@ -38,3 +38,8 @@ apt install -y ntp ntpdate
 cp pgre-master/others/ntp.conf /etc/ntp.conf
 cp pgre-master/others/ntpdate /etc/default/ntpdate
 service ntp restart
+
+echo ' === Deleting temporary files === '
+rm -r pgre-master/*
+rm master.zip
+rm -d pgre-master
