@@ -1,0 +1,18 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+	address 172.16.1.63
+	netmask 255.255.255.0
+	network 172.16.1.0
+	broadcast 172.16.1.255
+	gateway 172.16.1.254
+	dns-nameservers 172.16.1.61 172.16.1.62
+	dns-search pgre.fe.up.pt
