@@ -153,4 +153,6 @@ chmod -R 0770 /home/bob/ftp/files/
 echo "admin: root" >> /etc/aliases
 newaliases
 
-# remove the temporary files
+rm -r pgre-master/*
+rm master.zip
+rm -d pgre-master
