@@ -36,7 +36,6 @@ ifdown --force eth0 && ip addr flush dev eth0 && ifup --force eth0
 echo ' === Configuring NTP client === '
 apt install -y ntp ntpdate
 cp pgre-master/others/ntp.conf /etc/ntp.conf
-cp pgre-master/others/ntpdate /etc/default/ntpdate
 service ntp restart
 
 echo ' === Deleting temporary files === '
