@@ -29,7 +29,7 @@ myorigin = $mydomain
 
 mydestination = $myhostname, $mydomain, localhost.$mydomain, localhost
 relayhost = 
-mynetworks = 127.0.0.0/8, 172.16.1.0/24
+mynetworks = 127.0.0.0/8, 172.16.2.0/24
 mailbox_command = procmail -a "$EXTENSION"
 mailbox_size_limit = 0
 recipient_delimiter = +
