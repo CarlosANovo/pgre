@@ -9,11 +9,11 @@
 zone "pgre.fe.up.pt" {
 	type slave;
 	file "db.pgre.fe.up.pt";
-	masters { 172.16.1.61; };	# ns1 - tux61
+	masters { 172.16.2.61; };	# ns1 - tux61
 };
 
-zone "1.16.172.in-addr.arpa" {
+zone "2.16.172.in-addr.arpa" {
 	type slave;
-	file "db.1.17.172";
-	masters { 172.16.1.61; };	# ns1 - tux61
+	file "db.2.17.172";
+	masters { 172.16.2.61; };	# ns1 - tux61
 };
