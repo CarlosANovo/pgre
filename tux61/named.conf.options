@@ -1,8 +1,8 @@
 acl "trusted" {
-	172.16.1.61;	# This host - tux61 - ns1
-	172.16.1.62;	# tux62 - ns2
-	172.16.1.63;	# tux63
-	172.16.1.64;	# tux64	
+	172.16.2.61;	# This host - tux61 - ns1
+	172.16.2.62;	# tux62 - ns2
+	172.16.2.63;	# tux63
+	172.16.2.64;	# tux64	
 };
 
 options {
@@ -10,13 +10,13 @@ options {
 	
 	recursion yes;
 	allow-recursion { trusted; };
-	listen-on { 172.16.1.61; };
+	listen-on { 172.16.2.61; };
 	allow-transfer { none; };
 	
 	forwarders {
 		8.8.8.8;
 		8.8.4.4;
-		172.16.1.1;
+		172.16.2.1;
 	};
 
 	//========================================================================
