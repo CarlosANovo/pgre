@@ -9,10 +9,10 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-	address 172.16.1.63
+	address 172.16.2.63
 	netmask 255.255.255.0
-	network 172.16.1.0
-	broadcast 172.16.1.255
-	gateway 172.16.1.254
-	dns-nameservers 172.16.1.61 172.16.1.62
+	network 172.16.2.0
+	broadcast 172.16.2.255
+	gateway 172.16.2.254
+	dns-nameservers 172.16.2.61 172.16.2.62
 	dns-search pgre.fe.up.pt
