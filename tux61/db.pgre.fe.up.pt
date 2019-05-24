@@ -14,17 +14,17 @@ $TTL	604800
 	IN	NS	ns2.pgre.fe.up.pt.
 
 ; name servers - A records
-ns1.pgre.fe.up.pt.	IN	A	172.16.1.61
-ns2.pgre.fe.up.pt.	IN	A	172.16.1.62
+ns1.pgre.fe.up.pt.	IN	A	172.16.2.61
+ns2.pgre.fe.up.pt.	IN	A	172.16.2.62
 
 ; Rede interna - A records
-tux61.pgre.fe.up.pt.	IN	A	172.16.1.61
-tux62.pgre.fe.up.pt.	IN	A	172.16.1.62
-tux63.pgre.fe.up.pt.	IN	A	172.16.1.63
-tux64.pgre.fe.up.pt.	IN	A	172.16.1.64
-mail.pgre.fe.up.pt.	IN	A	172.16.1.61
-ftp.pgre.fe.up.pt.	IN	A	172.16.1.61
-ntp.pgre.fe.up.pt.	IN	A	172.16.1.61
-pgre.fe.up.pt.		IN	A	172.16.1.61
+tux61.pgre.fe.up.pt.	IN	A	172.16.2.61
+tux62.pgre.fe.up.pt.	IN	A	172.16.2.62
+tux63.pgre.fe.up.pt.	IN	A	172.16.2.63
+tux64.pgre.fe.up.pt.	IN	A	172.16.2.64
+mail.pgre.fe.up.pt.	IN	A	172.16.2.61
+ftp.pgre.fe.up.pt.	IN	A	172.16.2.61
+ntp.pgre.fe.up.pt.	IN	A	172.16.2.61
+pgre.fe.up.pt.		IN	A	172.16.2.61
 
 
