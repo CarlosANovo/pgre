@@ -9,12 +9,12 @@
 zone "pgre.fe.up.pt" {
 	type master;
 	file "/etc/bind/zones/db.pgre.fe.up.pt";
-	allow-transfer { 172.16.1.62; };
+	allow-transfer { 172.16.2.62; };
 };
 
-zone "1.16.172.in-addr.arpa" {
+zone "2.16.172.in-addr.arpa" {
 	type master;
-	file "/etc/bind/zones/db.1.16.172";
-	allow-transfer { 172.16.1.62; };
+	file "/etc/bind/zones/db.2.16.172";
+	allow-transfer { 172.16.2.62; };
 };
 
