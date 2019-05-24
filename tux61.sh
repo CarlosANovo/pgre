@@ -53,12 +53,12 @@ cp /etc/bind/named.conf.local{,.backup}
 cp pgre-master/tux61/named.conf.local /etc/bind/named.conf.local
 echo 'Making the databases...'
 mkdir /etc/bind/zones
-cp pgre-master/tux61/db.1.16.172 /etc/bind/zones/db.1.16.172
+cp pgre-master/tux61/db.2.16.172 /etc/bind/zones/db.2.16.172
 cp pgre-master/tux61/db.pgre.fe.up.pt /etc/bind/zones/db.pgre.fe.up.pt
 echo 'Checking correct configuration...'
 named-checkconf
 named-checkzone pgre.fe.up.pt /etc/bind/zones/db.pgre.fe.up.pt
-named-checkzone 1.16.172.in-addr.arpa /etc/bind/zones/db.1.16.172
+named-checkzone 2.16.172.in-addr.arpa /etc/bind/zones/db.2.16.172
 echo 'Restarting and enabling DNS server...'
 systemctl restart bind
 systemctl enable bind
@@ -91,6 +91,7 @@ chmod -r 755 /var/www/mail.pgre.fe.up.pt
 cd /var/www/mail.pgre.fe.up.pt/html
 curl -sL https://repository.rainloop.net/installer.php | php
 
+cd -
 cp pgre-master/tux61/mail.pgre.fe.up.pt.conf /etc/apache2/sites-available/mail.pgre.fe.up.pt.conf
 a2ensite mail.pgre.fe.up.pt
 systemctl restart apache2
